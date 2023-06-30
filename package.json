@@ -1,0 +1,21 @@
+{
+  "name": "sessions-analytics",
+  "private": true,
+  "author": "Fernando <lnfernandobr@gmail.com>",
+  "version": "1.0.0",
+  "main": "main.mjs",
+  "license": "MIT",
+  "scripts": {
+    "run:server": "yarn workspace @sessions-analytics/server run start",
+    "run:client": "yarn workspace @sessions-analytics/client run start",
+    "start": "yarn run run:server & yarn run run:client"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "devDependencies": {
+    "prettier": "^2.8.7"
+  }
+}
