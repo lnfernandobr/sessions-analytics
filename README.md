@@ -12,6 +12,7 @@
 * TailwinCSS
 * React Router Dom
 * React Toastify
+* Axios
 
 **Server:** 
 * Express
