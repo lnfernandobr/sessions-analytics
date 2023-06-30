@@ -1,7 +1,7 @@
-import jwt from 'jsonwebtoken';
-import { UsersCollection } from '../models/User.mjs';
-import bcrypt from 'bcrypt';
-import { TokensCollection } from '../models/Token.mjs';
+import jwt from "jsonwebtoken";
+import { UsersCollection } from "../models/User.mjs";
+import bcrypt from "bcrypt";
+import { TokensCollection } from "../models/Token.mjs";
 const { JWT_SECRET: jwtSecret } = process.env;
 
 export const signIn = async (req, res) => {
@@ -14,13 +14,13 @@ export const signIn = async (req, res) => {
   if (!userDb) {
     return res
       .status(401)
-      .json({ message: 'User not found or does not exist' });
+      .json({ message: "User not found or does not exist" });
   }
 
   const isPasswordValid = await bcrypt.compare(password, userDb.password);
 
   if (!isPasswordValid) {
-    return res.status(401).json({ message: 'Invalid user or password' });
+    return res.status(401).json({ message: "Invalid user or password" });
   }
 
   const token = jwt.sign({ userId: userDb._id }, jwtSecret);
@@ -32,9 +32,9 @@ export const signIn = async (req, res) => {
 
 export const signOut = async (req, res) => {
   const { authorization } = req.headers;
-  await TokensCollection.delete({ token: authorization });
+  await TokensCollection.deleteOne({ token: authorization });
 
-  return res.json({ message: 'Successfully logged out' });
+  return res.json({ message: "Successfully logged out" });
 };
 
 export const requireAuth = (req, res, next) => {
@@ -43,13 +43,13 @@ export const requireAuth = (req, res, next) => {
   if (!token) {
     return res
       .status(401)
-      .json({ message: 'Authentication token not provided' });
+      .json({ message: "Authentication token not provided" });
   }
 
   try {
     req.user = jwt.verify(token, jwtSecret);
     next();
   } catch (error) {
-    return res.status(401).json({ message: 'Invalid authentication token' });
+    return res.status(401).json({ message: "Invalid authentication token" });
   }
 };

@@ -7,18 +7,19 @@ import { api } from "../services/api";
 import { RoutePaths } from "../routes/RoutePaths";
 import { TOKEN_KEY } from "../constants";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../users/UserContext";
 
 export const Login = () => {
   const [isRegister, setIsRegister] = useState(false);
   const [form, setForm] = useState({ password: "", email: "" });
   const navigate = useNavigate();
+  const { setIsAuthenticated } = useAuth();
 
   const onChange = ({ target: { value, name } }) =>
     setForm((prevState) => ({ ...prevState, [name]: value }));
 
   const handleLogin = (token) => {
-    console.log("token", token);
-
+    setIsAuthenticated(true);
     localStorage.setItem(TOKEN_KEY, token);
     navigate(RoutePaths.ROOT);
     toast("Welcome!", { type: "info" });
