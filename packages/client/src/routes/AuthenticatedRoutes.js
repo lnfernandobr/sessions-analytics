@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { RoutePaths } from "./RoutePaths";
 import { logout } from "../utils";
+import { AuthenticatedLayout } from "../layouts/AuthenticatedLayout";
 
 const Sessions = () => {
   return (
@@ -11,7 +12,9 @@ const Sessions = () => {
   );
 };
 export const AuthenticatedRoutes = () => (
-  <Routes>
-    <Route path={RoutePaths.ROOT} element={<Sessions />} />
-  </Routes>
+  <AuthenticatedLayout>
+    <Routes>
+      <Route path={RoutePaths.ROOT} element={<Sessions />} />
+    </Routes>
+  </AuthenticatedLayout>
 );
