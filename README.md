@@ -13,6 +13,8 @@
 * React Router Dom
 * React Toastify
 * Axios
+* Headless UI
+* Hero Icons
 
 **Server:** 
 * Express
