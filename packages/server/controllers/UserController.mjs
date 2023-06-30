@@ -1,4 +1,4 @@
-import { UsersCollection } from '../models/User.mjs';
+import { UsersCollection } from "../models/User.mjs";
 
 export const signup = async (req, res) => {
   const { name, email, password } = req.body;
@@ -8,7 +8,7 @@ export const signup = async (req, res) => {
   });
 
   if (userDb) {
-    return res.status(409).json({ message: 'User already exists' });
+    return res.status(409).json({ message: "User already exists" });
   }
 
   const user = await UsersCollection.save({

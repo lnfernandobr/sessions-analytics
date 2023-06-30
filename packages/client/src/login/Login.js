@@ -2,17 +2,54 @@ import React, { useState } from "react";
 import { TextField } from "../components/TextField";
 import { Button } from "../components/Button";
 import { toast } from "react-toastify";
+import { clientErrorHandler } from "../services/errorHandler";
+import { api } from "../services/api";
+import { RoutePaths } from "../routes/RoutePaths";
+import { TOKEN_KEY } from "../constants";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const [isRegister, setIsRegister] = useState(false);
   const [form, setForm] = useState({ password: "", email: "" });
+  const navigate = useNavigate();
 
   const onChange = ({ target: { value, name } }) =>
     setForm((prevState) => ({ ...prevState, [name]: value }));
 
+  const handleLogin = (token) => {
+    console.log("token", token);
+
+    localStorage.setItem(TOKEN_KEY, token);
+    navigate(RoutePaths.ROOT);
+    toast("Welcome!", { type: "info" });
+  };
+
   const onSubmit = async (event) => {
     event.preventDefault();
-    toast("You are logged in", { type: "info" });
+    try {
+      const url = isRegister ? "/users/signup" : "/auth/signin";
+
+      const data = {
+        email: form.email.toLowerCase().trim(),
+        password: form.password,
+        ...(isRegister ? { name: form.name } : {}),
+      };
+
+      const response = await api.post(url, data);
+      console.log(`response`, response);
+
+      if (isRegister && response.data._id) {
+        api.post("/auth/signin", data).then((r) => handleLogin(r.data.token));
+        return;
+      }
+
+      const tk = response.data.token;
+      if (tk) {
+        handleLogin(tk);
+      }
+    } catch (err) {
+      clientErrorHandler(err, true);
+    }
   };
 
   return (
@@ -66,7 +103,9 @@ export const Login = () => {
               label="Password"
             />
           </div>
-          <Button type="submit">{isRegister ? "Create account" : "Sign-in"}</Button>
+          <Button type="submit">
+            {isRegister ? "Create account" : "Sign-in"}
+          </Button>
         </form>
       </div>
     </div>

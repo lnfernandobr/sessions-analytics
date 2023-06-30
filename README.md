@@ -8,8 +8,10 @@
 ## Stack
 
 **Client:**
-* ReactJS
+* React.JS
 * TailwinCSS
+* React Router Dom
+* React Toastify
 
 **Server:** 
 * Express
