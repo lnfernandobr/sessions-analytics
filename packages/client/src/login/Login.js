@@ -1,6 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { TextField } from "../components/TextField";
 import { Button } from "../components/Button";
+import { toast } from "react-toastify";
 
 export const Login = () => {
   const [isRegister, setIsRegister] = useState(false);
@@ -11,6 +12,7 @@ export const Login = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
+    toast("You are logged in", { type: "info" });
   };
 
   return (
@@ -27,7 +29,7 @@ export const Login = () => {
               setIsRegister(!isRegister);
             }}
           >
-            {isRegister ? "Quero fazer login" : "Quero fazer cadastro"}
+            {isRegister ? "I want to login" : "I want to create a new account"}
           </span>
         </div>
 
@@ -39,8 +41,8 @@ export const Login = () => {
                 name="name"
                 value={form.name}
                 onChange={onChange}
-                placeholder="Nome"
-                label="Nome"
+                placeholder="Name"
+                label="Name"
               />
             )}
 
@@ -60,11 +62,11 @@ export const Login = () => {
               type="password"
               value={form.password}
               onChange={onChange}
-              placeholder="Senha"
-              label="Senha"
+              placeholder="Password"
+              label="Password"
             />
           </div>
-          <Button type="submit">{isRegister ? "Cadastrar" : "Entrar"}</Button>
+          <Button type="submit">{isRegister ? "Create account" : "Sign-in"}</Button>
         </form>
       </div>
     </div>
