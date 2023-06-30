@@ -1,7 +1,12 @@
+import { UnauthenticatedRoutes } from "./routes/UnauthenticatedRoutes";
+import { AuthenticatedRoutes } from "./routes/AuthenticatedRoutes";
+
 export const App = () => {
-  return (
-    <div>
-      <h1 className="underline">ola</h1>
-    </div>
-  );
+  const isAuthenticated = false;
+
+  if (!isAuthenticated) {
+    return <UnauthenticatedRoutes />;
+  }
+
+  return <AuthenticatedRoutes />;
 };
