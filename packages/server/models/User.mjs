@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-import bcrypt from 'bcrypt';
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
 const userSchema = new mongoose.Schema({
   name: String,
@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
   createdAt: Date,
 });
 
-export const UserModel = mongoose.model('User', userSchema);
+export const UserModel = mongoose.model("User", userSchema);
 
 export const UsersCollection = Object.assign(UserModel, {
   async save(user) {

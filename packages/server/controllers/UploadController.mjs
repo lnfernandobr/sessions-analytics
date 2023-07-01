@@ -16,7 +16,6 @@ export const handleUploads = async (req, res, next) => {
 
     res.sendStatus(200);
   } catch (error) {
-    console.error(error);
     next(error);
   }
 };

@@ -8,7 +8,9 @@
   "scripts": {
     "run:server": "yarn workspace @sessions-analytics/server run start",
     "run:client": "yarn workspace @sessions-analytics/client run start",
-    "start": "yarn run run:server & yarn run run:client"
+    "start": "yarn run run:server & yarn run run:client",
+    "lint": "eslint . --ext .js,.mjs",
+    "prettier": "prettier --write \"**/*.{js,mjs}\""
   },
   "workspaces": {
     "packages": [
@@ -16,6 +18,7 @@
     ]
   },
   "devDependencies": {
-    "prettier": "^2.8.7"
+    "prettier": "^2.8.7",
+    "@sessions-analytics/lint": "*"
   }
 }

@@ -5,7 +5,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(
-    !!localStorage.getItem(TOKEN_KEY) || false
+    !!localStorage.getItem(TOKEN_KEY) || false,
   );
 
   return (

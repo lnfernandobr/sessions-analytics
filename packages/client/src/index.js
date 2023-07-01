@@ -8,5 +8,5 @@ const root = ReactDOM.createRoot(document.getElementById("app"));
 root.render(
   <React.StrictMode>
     <AppContainer />
-  </React.StrictMode>
+  </React.StrictMode>,
 );

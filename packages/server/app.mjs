@@ -1,9 +1,5 @@
-import * as dotenv from "dotenv";
-dotenv.config();
-
-import "./models/index.mjs";
-
 import express from "express";
+import "./models/index.mjs";
 import cors from "cors";
 import { authRoutes } from "./routes/auth.mjs";
 import { uploadRoutes } from "./routes/upload.mjs";
@@ -11,6 +7,9 @@ import { errorHandler } from "./middlewares/errorHandler.mjs";
 import "express-async-errors";
 import { userRoutes } from "./routes/users.mjs";
 import { sessionsByUserRoutes } from "./routes/sessionsByUser.mjs";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT;

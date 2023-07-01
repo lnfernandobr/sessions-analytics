@@ -37,7 +37,6 @@ export const Login = () => {
       };
 
       const response = await api.post(url, data);
-      console.log(`response`, response);
 
       if (isRegister && response.data._id) {
         api.post("/auth/signin", data).then((r) => handleLogin(r.data.token));

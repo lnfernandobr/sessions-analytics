@@ -7,6 +7,7 @@ export const logout = async () => {
     localStorage.removeItem(TOKEN_KEY);
     window.location = "/";
   } catch (error) {
+    // eslint-disable-next-line
     console.log(error);
   }
 };

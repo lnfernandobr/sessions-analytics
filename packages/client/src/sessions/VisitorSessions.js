@@ -21,7 +21,7 @@ export const VisitorSessions = ({ sessionsByUser, showSkeleton }) => {
       const formattedStartTime = formatStartTime(startTime);
       const durationInMinutes = differenceInMinutes(
         new Date(startTime + duration),
-        new Date(startTime)
+        new Date(startTime),
       );
       return (
         <div
@@ -68,7 +68,7 @@ export const VisitorSessions = ({ sessionsByUser, showSkeleton }) => {
 
   return (
     <>
-      <ul role="list" className="divide-y divide-gray-100">
+      <ul className="divide-y divide-gray-100">
         {Object.keys(showSkeleton ? skeletonObject : sessionsByUser).map(
           (visitorId) => {
             return (
@@ -115,7 +115,7 @@ export const VisitorSessions = ({ sessionsByUser, showSkeleton }) => {
                 </li>
               </Fragment>
             );
-          }
+          },
         )}
       </ul>
 

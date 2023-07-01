@@ -10,7 +10,7 @@ const analyzedSessionSchema = new mongoose.Schema({
 
 export const AnalyzedSession = mongoose.model(
   "analyzedSession",
-  analyzedSessionSchema
+  analyzedSessionSchema,
 );
 
 export const AnalyzedSessionsCollection = Object.assign(AnalyzedSession, {
