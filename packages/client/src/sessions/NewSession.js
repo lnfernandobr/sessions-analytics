@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { api } from "../services/api";
 import { clientErrorHandler } from "../services/errorHandler";
 
-export const NewSession = () => {
+export const NewSession = ({ refetch }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -35,9 +35,13 @@ export const NewSession = () => {
         },
       })
       .then(() => {
-        setIsOpen(false);
         toast("The sessions for analysis were sent successfully!", {
           type: "success",
+        });
+
+        refetch().then(() => {
+          setIsOpen(false);
+          setSelectedFile(null);
         });
       })
       .catch(clientErrorHandler)

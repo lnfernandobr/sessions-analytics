@@ -2,6 +2,7 @@ import React from "react";
 import { NewSession } from "./NewSession";
 import { useQuery } from "react-query";
 import { api } from "../services/api";
+import { VisitorSessions } from "./VisitorSessions";
 
 export const AnalyzedSessions = () => {
   const fetchAnalyzedSessions = async () => {
@@ -9,12 +10,11 @@ export const AnalyzedSessions = () => {
     return response.data;
   };
 
-  const { data: { sessionsByUser } = {} } = useQuery(
-    "sessionsByUser",
-    fetchAnalyzedSessions
-  );
-
-  console.log(sessionsByUser);
+  const {
+    data: { sessionsByUser = {} } = {},
+    isLoading,
+    refetch,
+  } = useQuery("sessionsByUser", fetchAnalyzedSessions);
 
   return (
     <div>
@@ -23,8 +23,13 @@ export const AnalyzedSessions = () => {
           Sessions Analytics
         </h1>
 
-        <NewSession />
+        <NewSession refetch={refetch} />
       </div>
+
+      <VisitorSessions
+        sessionsByUser={sessionsByUser}
+        showSkeleton={isLoading}
+      />
     </div>
   );
 };

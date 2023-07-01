@@ -16,6 +16,7 @@
 * Headless UI
 * Hero Icons
 * React Query
+* Date FNS
 
 **Server:** 
 * Express
