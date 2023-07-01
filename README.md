@@ -25,3 +25,5 @@
 
 **DevOps:** 
 * Monorepo
+* ESlint
+* Prettier
