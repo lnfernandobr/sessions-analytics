@@ -3,13 +3,14 @@ import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import { logout } from "../utils";
+import { RoutePaths } from "../routes/RoutePaths";
 
 export const AppMenu = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navigation = [
     { name: "Sessions", href: "/" },
-    { name: "About", href: "/about" },
+    { name: "About", href: `/${RoutePaths.ABOUT}` },
   ];
 
   return (
