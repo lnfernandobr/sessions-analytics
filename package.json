@@ -10,7 +10,9 @@
     "run:client": "yarn workspace @sessions-analytics/client run start",
     "start": "yarn run run:server & yarn run run:client",
     "lint": "eslint . --ext .js,.mjs",
-    "prettier": "prettier --write \"**/*.{js,mjs}\""
+    "lint:fix": "eslint . --ext .js,.mjs --fix",
+    "prettier": "prettier --write \"**/*.{js,mjs}\"",
+    "format-to-commit": "npm run prettier && npm run lint:fix"
   },
   "workspaces": {
     "packages": [
