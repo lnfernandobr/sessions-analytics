@@ -15,6 +15,7 @@
 * Axios
 * Headless UI
 * Hero Icons
+* React Query
 
 **Server:** 
 * Express
