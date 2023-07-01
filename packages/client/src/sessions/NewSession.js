@@ -2,14 +2,48 @@ import React, { useState } from "react";
 import { Modal } from "../components/Modal";
 import { Button } from "../components/Button";
 import { DragDropFile } from "../components/DragDropFile";
+import { toast } from "react-toastify";
+import { api } from "../services/api";
+import { clientErrorHandler } from "../services/errorHandler";
 
 export const NewSession = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [file, setFile] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const onAddNewSession = () => {
-    console.log(file);
-    setIsOpen(false);
+    if (!selectedFile) {
+      toast("No file selected", { type: "warning" });
+      return;
+    }
+
+    const filePath = selectedFile.name;
+    const allowedExtensions = /(\.json)$/i;
+    if (!allowedExtensions.exec(filePath)) {
+      toast("Please select a valid JSON file!", { type: "warning" });
+      return;
+    }
+
+    setIsLoading(true);
+    const formData = new FormData();
+    formData.append("file", selectedFile);
+
+    api
+      .post("/upload", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then(() => {
+        setIsOpen(false);
+        toast("The sessions for analysis were sent successfully!", {
+          type: "success",
+        });
+      })
+      .catch(clientErrorHandler)
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   return (
@@ -31,7 +65,7 @@ export const NewSession = () => {
         <div className=" mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
           <DragDropFile
             setFiles={(files) => {
-              setFile(files.length > 0 ? files[0] : null);
+              setSelectedFile(files.length > 0 ? files[0] : null);
             }}
           >
             <div className="flex items-center justify-center flex-col w-full">
@@ -58,8 +92,8 @@ export const NewSession = () => {
                   >
                     <span>Uploaded file</span>
 
-                    {file ? (
-                      file.name
+                    {selectedFile ? (
+                      selectedFile.name
                     ) : (
                       <label
                         htmlFor="file-upload"
@@ -76,7 +110,9 @@ export const NewSession = () => {
         </div>
 
         <div className="flex justify-end mt-8">
-          <Button onClick={onAddNewSession}>Save</Button>
+          <Button disabled={isLoading} onClick={onAddNewSession}>
+            {isLoading ? "Sending..." : "Save"}
+          </Button>
         </div>
       </Modal>
     </div>

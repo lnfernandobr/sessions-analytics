@@ -3,7 +3,6 @@ import { useDropzone } from "react-dropzone";
 
 export const DragDropFile = ({ children, setFiles }) => {
   const { getRootProps, getInputProps } = useDropzone({
-    accept: "*/*",
     onDrop: (acceptedFiles) => {
       setFiles(
         acceptedFiles.map((file) =>
