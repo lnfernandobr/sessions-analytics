@@ -45,6 +45,13 @@ yarn start
 
 After following these steps, the server will be available at http://localhost:5000 and the client at http://localhost:3000.
 
+## Testing
+
+To test you can acess the server package and run the following command 
+```bash
+yarn run test
+```
+
 ## Stack
 
 **Client:**
