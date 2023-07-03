@@ -36,7 +36,7 @@ yarn install
 ```
 5. You will need to install and run mongoDB in your machine to it runs correctly 
 ```
-https://www.mongodb.com/docs/manual/installation/yarn install
+https://www.mongodb.com/docs/manual/installation
 ```
 6. To run both the client and the server, you can run the `start` script in the root folder:
 ```bash
