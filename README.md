@@ -22,21 +22,21 @@ To install this project on your local machine and follow the steps below:
 ```git
    git clone https://github.com/lnfernandobr/sessions-analytics.git
 ```
-2. Access the project folder:
+2. You will need to install and run mongoDB in your machine to it runs correctly
+```
+https://www.mongodb.com/docs/manual/installation
+```
+3. Access the project folder:
 ```bash
 cd sessions-analytics
 ```
-3. If you use nvm, you can switch to node 16. if you don't use it, you'll need to change to version 16 to work properly
+4. If you use nvm, you can switch to node 16. if you don't use it, you'll need to change to version 16 to work properly
 ```bash
 nvm use 16
 ```
-4. Install the project's dependencies: (You must use yarn to install all dependencies, including dependencies from packages project)
+5. Install the project's dependencies: (You must use yarn to install all dependencies, including dependencies from packages project)
 ```bash
 yarn install
-```
-5. You will need to install and run mongoDB in your machine to it runs correctly 
-```
-https://www.mongodb.com/docs/manual/installation
 ```
 6. To run both the client and the server, you can run the `start` script in the root folder:
 ```bash
