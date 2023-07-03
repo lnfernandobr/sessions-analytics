@@ -16,6 +16,8 @@ The goal of this challenger is to implement a new analytics feature called "Sess
 
 To install this project on your local machine and follow the steps below:
 
+### You must use `node version 16` to run this project.
+
 1. Clone the repository from GitHub:
 ```git
    git clone https://github.com/lnfernandobr/sessions-analytics.git
@@ -24,11 +26,16 @@ To install this project on your local machine and follow the steps below:
 ```bash
 cd sessions-analytics
 ```
-3. Install the project's dependencies: (You must use yarn to install all dependencies, including dependencies from packages project)
+
+3. If you use nvm, you can switch to node 16. if you don't use it, you'll need to change to version 16 to work properly
+```bash
+nvm use 16
+```
+4. Install the project's dependencies: (You must use yarn to install all dependencies, including dependencies from packages project)
 ```bash
 yarn install
 ```
-4. To run both the client and the server, you can run the `start` script in the root folder:
+5. To run both the client and the server, you can run the `start` script in the root folder:
 ```bash
 yarn start
 ```
