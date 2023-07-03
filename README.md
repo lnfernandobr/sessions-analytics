@@ -26,7 +26,6 @@ To install this project on your local machine and follow the steps below:
 ```bash
 cd sessions-analytics
 ```
-
 3. If you use nvm, you can switch to node 16. if you don't use it, you'll need to change to version 16 to work properly
 ```bash
 nvm use 16
@@ -35,7 +34,11 @@ nvm use 16
 ```bash
 yarn install
 ```
-5. To run both the client and the server, you can run the `start` script in the root folder:
+5. You will need to install and run mongoDB in your machine to it runs correctly 
+```
+https://www.mongodb.com/docs/manual/installation/yarn install
+```
+6. To run both the client and the server, you can run the `start` script in the root folder:
 ```bash
 yarn start
 ```
