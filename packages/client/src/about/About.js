@@ -7,13 +7,13 @@ export const About = () => {
           Sessions Analytics - Tech challenger
         </h2>
         <p className="mt-6 text-lg leading-8 text-gray-600">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed consequat
-          est sit amet mauris fringilla, sed posuere libero scelerisque. Morbi
-          eleifend urna vitae semper luctus. Ut efficitur justo sit amet erat
-          vestibulum, sed rhoncus mi dignissim. Nullam non nisl elit. Vestibulum
-          ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
-          curae; Suspendisse tristique purus in nisi varius, nec convallis massa
-          pulvinar.
+          The goal of this challenger is to implement a new analytics feature
+          called "Sessions Analytics." Given a set of data consisting of
+          individual web page visits and visitor IDs, the objective is to
+          generate a list of sessions for each visitor.
+          <br />
+          <br />
+          This project was made using the <b> MERN stack</b>.
         </p>
       </div>
     </div>
