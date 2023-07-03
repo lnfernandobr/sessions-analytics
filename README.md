@@ -22,6 +22,7 @@
 * Express
 * Mongoose (MongoDB)
 * Jsonwebtokens
+* Jest
 
 **DevOps:** 
 * Monorepo
