@@ -14,7 +14,7 @@ The goal of this challenger is to implement a new analytics feature called "Sess
 
 ## local installation
 
-To install this project on your local machine, follow the steps below:
+To install this project on your local machine and follow the steps below:
 
 1. Clone the repository from GitHub:
 ```git
