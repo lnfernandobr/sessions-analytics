@@ -7,7 +7,7 @@ export const handleUploads = async (req, res, next) => {
     const { userId } = req.user;
     const fileContent = fs.readFileSync(req.file.path, "utf-8");
     const rawSessions = JSON.parse(fileContent);
-    const sessionsByUser = analysisAndGenerationOfSessions(rawSessions);
+    const { sessionsByUser } = analysisAndGenerationOfSessions(rawSessions);
 
     await AnalyzedSessionsCollection.save({
       sessionsByUser,

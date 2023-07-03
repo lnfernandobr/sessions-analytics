@@ -1,10 +1,10 @@
 import React, { Fragment, useState } from "react";
-import { differenceInMinutes, format } from "date-fns";
+import { differenceInMinutes, format, differenceInSeconds } from "date-fns";
 import { Modal } from "../components/Modal";
 
 const formatStartTime = (startTime) => {
-  const formattedDate = format(new Date(startTime), "MM/dd/yyyy");
-  const formattedTime = format(new Date(startTime), "HH:mm");
+  const formattedDate = format(new Date(startTime), "dd/MM/yyyy");
+  const formattedTime = format(new Date(startTime), "HH:mm:ss");
   return `${formattedDate} at ${formattedTime}`;
 };
 
@@ -19,7 +19,12 @@ export const VisitorSessions = ({ sessionsByUser, showSkeleton }) => {
     return sessions.map((session, index) => {
       const { duration, pages, startTime } = session;
       const formattedStartTime = formatStartTime(startTime);
+
       const durationInMinutes = differenceInMinutes(
+        new Date(startTime + duration),
+        new Date(startTime),
+      );
+      const durationInSeconds = differenceInSeconds(
         new Date(startTime + duration),
         new Date(startTime),
       );
@@ -32,7 +37,10 @@ export const VisitorSessions = ({ sessionsByUser, showSkeleton }) => {
             First access on{" "}
             <span className="text-indigo-500">{formattedStartTime}</span> with a
             duration of{" "}
-            <span className="text-indigo-500">{durationInMinutes} min</span>
+            <span className="text-indigo-500">
+              {durationInMinutes} min{" "}
+              {durationInSeconds > 0 && `or ${durationInSeconds} sec`}
+            </span>
           </p>
 
           <div className="flex justify-between mb-2 flex-col mt-4 text-sm">

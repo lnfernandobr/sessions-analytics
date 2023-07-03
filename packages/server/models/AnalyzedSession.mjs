@@ -23,6 +23,6 @@ export const AnalyzedSessionsCollection = Object.assign(AnalyzedSession, {
       return sessionToSave.save();
     }
 
-    AnalyzedSession.updateOne({ userId }, session);
+    await AnalyzedSession.updateOne({ userId }, session);
   },
 });

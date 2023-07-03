@@ -5,6 +5,7 @@ export const analysisAndGenerationOfSessions = (data) => {
   if (!data.events.length) {
     throw new Error("events is empty");
   }
+
   try {
     const { events } = data;
     const sessionsByUser = {};
@@ -12,9 +13,7 @@ export const analysisAndGenerationOfSessions = (data) => {
     // Sort ascending events
     events.sort((a, b) => a.timestamp - b.timestamp);
 
-    events.forEach((event) => {
-      const { url, visitorId, timestamp } = event;
-
+    events.forEach(({ url, visitorId, timestamp }) => {
       // Check if user has existing sessions or create a new one
       if (!sessionsByUser[visitorId]) {
         sessionsByUser[visitorId] = [];
@@ -22,41 +21,27 @@ export const analysisAndGenerationOfSessions = (data) => {
 
       const sessions = sessionsByUser[visitorId];
       const previousSession = sessions[sessions.length - 1];
+      const currentVisit = { url, timestamp };
 
       const isEmptySessions = !sessions.length;
       const isMoreThan10Minutos =
         previousSession && timestamp - previousSession.startTime > 600000;
-
       const shouldRegisterNewSession = isEmptySessions || isMoreThan10Minutos;
 
       if (shouldRegisterNewSession) {
         sessions.push({
           duration: 0,
-          pages: [{ url, timestamp }],
+          pages: [currentVisit],
           startTime: timestamp,
         });
         return;
       }
 
-      previousSession.pages.push({ url, timestamp });
+      previousSession.pages.push(currentVisit);
+      previousSession.duration = timestamp - sessions[0].startTime;
     });
 
-    for (const visitorId in sessionsByUser) {
-      const sessions = sessionsByUser[visitorId];
-
-      sessionsByUser[visitorId] = sessions.map((session) => {
-        const { pages, startTime } = session;
-        const duration =
-          pages.length > 1 ? pages[pages.length - 1].timestamp - startTime : 0;
-        return {
-          duration,
-          pages,
-          startTime,
-        };
-      });
-    }
-
-    return sessionsByUser;
+    return { sessionsByUser };
   } catch (error) {
     throw new Error(error);
   }
