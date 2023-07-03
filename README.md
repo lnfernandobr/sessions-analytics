@@ -30,7 +30,7 @@ yarn install
 ```
 4. To run both the client and the server, you can run the `start` script in the root folder:
 ```bash
-npm run start
+yarn start
 ```
 
 After following these steps, the server will be available at http://localhost:5000 and the client at http://localhost:3000.
